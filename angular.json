@@ -100,6 +100,37 @@
           }
         }
       }
+    },
+    "grid-lib": {
+      "projectType": "library",
+      "root": "projects/grid-lib",
+      "sourceRoot": "projects/grid-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/grid-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/grid-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/grid-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/grid-lib/src/test.ts",
+            "tsConfig": "projects/grid-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/grid-lib/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "GridAngular"
