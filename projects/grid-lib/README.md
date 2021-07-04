@@ -2,7 +2,8 @@
 
 > First Version Of **A Simple, Interesting And Native But Powerful Grid Library** For Angular.
 
-This grid is designed to place an image in it, and to be able to highlight different points of the image at the same time by just pressing the button click on one of the cells.![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/example/Example3.PNG)
+This grid is designed to place an image in it, and to be able to highlight different points of the image at the same time by just pressing the button click on one of the cells.
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/example/Example3.PNG)
 
 ## Set Up
 
