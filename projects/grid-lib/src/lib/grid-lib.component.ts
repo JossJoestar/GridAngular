@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ICell } from './cell.interface';
+import { GridLibService } from './grid-lib.service';
 
 @Component({
     selector: 'grid-VanHouten',
@@ -10,32 +12,39 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GridLibComponent implements OnInit {
 
-    constructor() { }
+    constructor(private gridService: GridLibService) { }
 
     @Input() imageURL: string = '';
+    @Input() cellsInXAxis: number = 5;
+    @Input() cellsInYAxis: number = 5;
+    @Output() getDataCellList = new EventEmitter<ICell[]>();
+
     private cellNumbers: number = 5;
     private canvasSize: number = 900
     private borderSize: number = 20;
-    private cellsList: { x: number, y: number, isActive: boolean }[] = [];
+    private cellsList: ICell[] = [];
     private cellSizeX: number = 0;
     private cellSizeY: number = 0;
     private isNew: boolean = true;
 
 
     ngOnInit(): void {
-        console.log(this.imageURL);
         this.prepareCanvas();
     }
 
+    printCells() {
+        this.getDataCellList.emit(this.cellsList);
+    }
+
     private prepareCanvas() {
-        // debugger;
         const canvas = <HTMLCanvasElement>document.getElementById('canvasGrid');
         canvas.width = canvas.height = (this.canvasSize - this.borderSize);
         const ctx = canvas.getContext('2d');
         if (ctx == null)
             return; //Send error if the ctx is null; 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        this.cellsList = [];
+        if (this.isNew)
+            this.cellsList = [];
         this.renderImageInCanvas(canvas, ctx);
     }
 
@@ -43,7 +52,6 @@ export class GridLibComponent implements OnInit {
         let img = new Image();
         img.src = this.imageURL;
         img.onload = () => {
-            debugger;
             if (img.width > canvas.width || img.height > canvas.height) {
                 let hRatio = canvas.width / img.width;
                 let wRatio = canvas.height / img.height;
@@ -53,13 +61,12 @@ export class GridLibComponent implements OnInit {
             }
             canvas.height = img.height + this.borderSize;
             canvas.width = img.width + this.borderSize;
-            this.cellSizeX = img.width / this.cellNumbers;
-            this.cellSizeY = img.height / this.cellNumbers;
+            this.cellSizeX = img.width / this.cellsInXAxis;
+            this.cellSizeY = img.height / this.cellsInYAxis;
             ctx.drawImage(img, this.borderSize, this.borderSize, img.width, img.height);
             this.renderGrid(img, ctx);
             if (this.isNew) {
                 canvas.addEventListener('click', evt => {
-                    debugger;
                     if (evt.offsetX < this.borderSize || evt.offsetY < this.borderSize)
                         return
                     const tileX = ~~((evt.offsetX - this.borderSize) / this.cellSizeX);
@@ -82,7 +89,14 @@ export class GridLibComponent implements OnInit {
                 const yy = y * this.cellSizeY;
                 ctx.fillStyle = "black";
                 ctx.strokeRect(xx + this.borderSize, yy + this.borderSize, this.cellSizeX, this.cellSizeY);
-                this.cellsList.push({ x: x, y: y, isActive: true });
+                if (this.isNew)
+                    this.cellsList.push({ x: x, y: y, isActive: true });
+                else if (!this.isNew) {
+                    if (this.cellsList.find(c => c.x == x && c.y == y)?.isActive == false) {
+                        ctx.fillStyle = 'rgba(0,0, 0,.7)';
+                        ctx.fillRect(xx + this.borderSize, yy + this.borderSize, this.cellSizeX, this.cellSizeY);
+                    }
+                }
             }
         }
 
@@ -92,9 +106,7 @@ export class GridLibComponent implements OnInit {
             ctx.fillStyle = "black";
             ctx.fillRect(xx + this.borderSize, 0, this.cellSizeX, this.borderSize);
             ctx.fillStyle = "white";
-
             ctx.fillText(" " + (x + 1), xx + this.borderSize, 0);
-
         }
 
         for (let y = 0; y < img.height / this.cellSizeY; y++) {
@@ -113,21 +125,25 @@ export class GridLibComponent implements OnInit {
                 const xx = x * this.cellSizeX;
                 const yy = y * this.cellSizeY;
                 if (x == xCord && y == yCord) {
-                    debugger;
-                    if (this.cellsList.find(cell => cell.x == xCord && cell.y == yCord)?.isActive == false)
+                    let cell = this.cellsList.find(c => c.x == xCord && c.y == yCord);
+                    if (cell?.isActive == false) {
+                        cell.isActive = true;
+                        this.prepareCanvas();
+                        this.gridService.getDataCellList(this.cellsList);
                         return;
+                    }
                     ctx.fillStyle = 'rgba(0,0, 0,.7)';
                     ctx.fillRect(xx + this.borderSize, yy + this.borderSize, this.cellSizeX, this.cellSizeY);
-                    let cell = this.cellsList.find(c => c.x == xCord && c.y == yCord);
                     if (cell != null)
                         cell.isActive = false;
+                    this.gridService.getDataCellList(this.cellsList);
                     return;
                 }
             }
         }
     }
 
-    private colName(n: any) {
+    private colName(n: number) {
         var ordA = 'A'.charCodeAt(0);
         var ordZ = 'Z'.charCodeAt(0);
         var len = ordZ - ordA + 1;
@@ -138,6 +154,4 @@ export class GridLibComponent implements OnInit {
         }
         return s;
     }
-
-
 }

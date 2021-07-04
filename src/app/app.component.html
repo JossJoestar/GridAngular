@@ -1,2 +1,7 @@
-<grid-VanHouten [imageURL]="url">
+<grid-VanHouten 
+    [imageURL]="url" 
+    [cellsInXAxis] = "5"
+    [cellsInYAxis] = "10"
+    (getDataCellList)="receiveMessage($event)"
+    >
 </grid-VanHouten>
