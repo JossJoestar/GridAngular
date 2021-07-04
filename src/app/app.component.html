@@ -1,12 +1,10 @@
 <clicking-Grid 
     [imageURL]="url"
-    [cellsInXAxis]="10"
-    [cellsInYAxis]="10"
-    [canvasSize]="800"
     [borderSize]="15"
     [rgbaColor]="rgba"
     [uppercase]="true"
     [numbersInXAxis]="true"
     [numbersInYAxis]="false"
+    (getDataCellList)="receiveMessage($event)"
     >
 </clicking-Grid>

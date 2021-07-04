@@ -68,6 +68,35 @@ Finally **with the properties numbersInXAxis and numbersInYAxis you can choose w
 </clicking-Grid>
 ```
 ![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%206%20y%207.PNG)
+## CONSUME DATA
+
+There are two easy ways to consume the grid data, one is by EventEmitter which is emitted every time the grid is updated by a click.
+
+    <clicking-Grid
+	    [imageURL]="url
+	    [borderSize]="15"
+	    [rgbaColor]="rgba"    
+	    (getDataCellList)="receiveMessage($event)"> </clicking-Grid>
+ With this method you need to create a function that receives the event
+
+    receiveMessage($event:  any) {
+        console.log($event);
+    }
+On the other hand, you can subscribe to the service and in the same way you will receive the data with each update per click.
+
+    constructor( private gridLibService:GridLibService) { }
+    
+    ngOnInit() {
+	    this.gridLibService.data.subscribe(m  =>  console.log(m));
+    }
+   Either way you will get an array of objects with the following structure.
+
+    export  interface  ICell {
+	    x:  number;
+	    y:  number;
+	    isActive:  boolean;
+	}
+
 ## ADDITIONAL
 **None of the properties exclude other properties** (or they should be), so you can make as many combinations as you want.
 
@@ -102,3 +131,4 @@ Send Me A Email:  oreoslawiet@gmail.com
 Follow me here!!! 
 
 **Trans Rights Are Human Rights**
+
