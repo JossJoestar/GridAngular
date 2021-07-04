@@ -95,6 +95,9 @@ Finally **with the properties numbersInXAxis and numbersInYAxis you can choose w
 
 ## Who Made This?
 Just another IT engineer
+
 Send Me A Email:  oreoslawiet@gmail.com
+
 Follow me here!!! 
+
 **Trans Rights Are Human Rights**
