@@ -3,7 +3,7 @@ import { ICell } from './cell.interface';
 import { GridLibService } from './grid-lib.service';
 
 @Component({
-    selector: 'grid-Muxx',
+    selector: 'clicking-Grid',
     template: `
     <canvas id="canvasGrid"></canvas>
     `,
@@ -20,7 +20,7 @@ export class GridLibComponent implements OnInit {
     @Input() canvasSize: number = 900;
     @Input() borderSize: number = 20;
     @Input() rgbaColor: string = 'rgba(0,0, 0,.7)';
-    @Input() capitalLetter: boolean = true;
+    @Input() uppercase: boolean = true;
     @Input() numbersInXAxis: boolean = true;
     @Input() numbersInYAxis: boolean = false;
     @Output() getDataCellList = new EventEmitter<ICell[]>();
@@ -153,8 +153,8 @@ export class GridLibComponent implements OnInit {
     }
 
     private colName(n: number) {
-        var ordA = this.capitalLetter ? 'A'.charCodeAt(0) : 'a'.charCodeAt(0);
-        var ordZ = this.capitalLetter ? 'Z'.charCodeAt(0) : 'z'.charCodeAt(0);
+        var ordA = this.uppercase ? 'A'.charCodeAt(0) : 'a'.charCodeAt(0);
+        var ordZ = this.uppercase ? 'Z'.charCodeAt(0) : 'z'.charCodeAt(0);
         var len = ordZ - ordA + 1;
         var s = "";
         while (n >= 0) {

@@ -1,10 +1,12 @@
-<grid-Muxx 
-    [imageURL]="url" 
-    [cellsInXAxis]="2"
-    [cellsInYAxis]="2"
-    [canvasSize]="900"
-    [borderSize]="20"
-    [rgbaColor]="'rgba(225,0, 0,.5)'"
-    (getDataCellList)="receiveMessage($event)"
+<clicking-Grid 
+    [imageURL]="url"
+    [cellsInXAxis]="10"
+    [cellsInYAxis]="10"
+    [canvasSize]="800"
+    [borderSize]="15"
+    [rgbaColor]="rgba"
+    [uppercase]="true"
+    [numbersInXAxis]="true"
+    [numbersInYAxis]="false"
     >
-</grid-Muxx>
+</clicking-Grid>
