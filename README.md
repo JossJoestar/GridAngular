@@ -2,7 +2,7 @@
 
 > First Version Of **A Simple, Interesting And Native But Powerful Grid Library** For Angular.
 
-This grid is designed to place an image in it, and to be able to highlight different points of the image at the same time by just pressing the button click on one of the cells.
+This grid is designed to place an image in it, and to be able to highlight different points of the image at the same time by just pressing the button click on one of the cells.![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/example/Example3.PNG)
 
 ## Set Up
 
@@ -12,9 +12,7 @@ This grid is designed to place an image in it, and to be able to highlight diffe
 <clicking-Grid [imageURL]="url">
 </clicking-Grid>
 ```
-
-  
-
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%201.PNG)
 By making data binding to a variable that has the value of the url, the component places automatic values for each of the configurations.
 
 **You can change the number of rows and columns easily with the variables cellsInXAxis and cellsInYAxis.**
@@ -26,9 +24,8 @@ By making data binding to a variable that has the value of the url, the componen
 	[cellsInYAxis]="15">
 </clicking-Grid>
 ```
-
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%202.PNG)
 By default the values are 5, **but you can change them and they are independent,** so don't be afraid to play with them.
-
   
 In the same way **you can change the canvas size**.
 
@@ -40,6 +37,7 @@ But **keep in mind that this includes the size of the borders**, but don't worry
 	[borderSize]="25">
 </clicking-Grid>
 ```
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%203.PNG)
 In addition you can also **change the rgba color with which the squares will be painted on the canvas.**
 ```
 <clicking-Grid
@@ -47,6 +45,7 @@ In addition you can also **change the rgba color with which the squares will be 
 	[rgbaColor]="rgba">
 </clicking-Grid>
 ```
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%204.PNG)
 With the **capitalLetter property you can decide between uppercase or lowercase** to display on the grid.
 ```
 <clicking-Grid
@@ -54,6 +53,7 @@ With the **capitalLetter property you can decide between uppercase or lowercase*
 	[uppercase]="false">
 </clicking-Grid>
 ```
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%205.PNG)
 Finally **with the properties numbersInXAxis and numbersInYAxis you can choose whether to display numbers or letters in each of the axes.**
 ```
 <clicking-Grid
@@ -62,6 +62,7 @@ Finally **with the properties numbersInXAxis and numbersInYAxis you can choose w
 	[numbersInYAxis]="true">
 </clicking-Grid>
 ```
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%206%20y%207.PNG)
 ## ADDITIONAL
 **None of the properties exclude other properties** (or they should be), so you can make as many combinations as you want.
 
@@ -87,3 +88,9 @@ Finally **with the properties numbersInXAxis and numbersInYAxis you can choose w
 |uppercase|Show uppercase or lowercase letters on the edges|
 |numbersInXAxis|Set numbers on the edges of the X axis|
 |numbersInYAxis|Set numbers on the edges of the Y axis|
+
+## Who Made This?
+Just another IT engineer
+Send Me A Email:  oreoslawiet@gmail.com
+Follow me here!!! 
+**Trans Rights Are Human Rights**
