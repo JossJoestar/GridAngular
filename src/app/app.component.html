@@ -1,7 +1,10 @@
-<grid-VanHouten 
+<grid-Muxx 
     [imageURL]="url" 
-    [cellsInXAxis] = "5"
-    [cellsInYAxis] = "10"
+    [cellsInXAxis]="2"
+    [cellsInYAxis]="2"
+    [canvasSize]="900"
+    [borderSize]="20"
+    [rgbaColor]="'rgba(225,0, 0,.5)'"
     (getDataCellList)="receiveMessage($event)"
     >
-</grid-VanHouten>
+</grid-Muxx>

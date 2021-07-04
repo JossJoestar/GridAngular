@@ -8,7 +8,8 @@ import { GridLibService } from 'projects/grid-lib/src/public-api';
 })
 export class AppComponent implements OnInit {
     title = 'GridAngular';
-    url = "https://www.stonewall.org.uk/sites/default/files/styles/basic_page_hero/public/trans_rights-logo_tw-post-1024x512.png?itok=XjhrJma7";
+    url = "https://c4.wallpaperflare.com/wallpaper/52/362/326/anime-picture-in-picture-purple-eyes-animal-ears-transgender-hd-wallpaper-preview.jpg";
+    // url = "../assets/anime-picture-in-picture-purple-eyes-animal-ears-transgender-hd-wallpaper-preview.jpg"
     cellsInXAxis = 5;
     cellsInYAxis = 7;
 
@@ -17,10 +18,10 @@ export class AppComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.gridService.data.subscribe(m => console.log(m));
+        // this.gridService.data.subscribe(m => console.log(m));
     }
-    
+
     receiveMessage($event: any) {
-        console.log($event)
+        console.log($event);
     }
 }
