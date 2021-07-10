@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:lib": "ng-packagr -p projects/grid-lib/ng-package.json"
+    "build:lib": "ng-packagr -p projects/grid-lib/ng-package.json && cp LICENSE.md dist/grid-lib/LICENSE.md"
   },
   "private": true,
   "dependencies": {
