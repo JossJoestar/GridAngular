@@ -1,13 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { GridLibService } from 'grid-lib';
+
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'GridAngular';
-    url = "https://www.stonewall.org.uk/sites/default/files/styles/basic_page_hero/public/trans_rights-logo_tw-post-1024x512.png?itok=XjhrJma7";
-    xLetters = false;
-    yLetters = true;
+    url = "https://images.unsplash.com/photo-1606425272073-6b1ea73c8557?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=667&q=80";
+    rgba = "rgba(0,255,0,.5)"
+    constructor(
+        private gridLibService:GridLibService
+    ) { }
+
+    ngOnInit() {
+        this.gridLibService.data.subscribe(m => console.log(m));
+    }
+
+    receiveMessage($event: any) {
+        console.log($event);
+    }
 }

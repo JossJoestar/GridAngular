@@ -1,27 +1,134 @@
-# GridAngular
+# Clicking Grid
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
+> First Version Of **A Simple, Interesting And Native But Powerful Grid Library** For Angular.
 
-## Development server
+This grid is designed to place an image in it, and to be able to highlight different points of the image at the same time by just pressing the button click on one of the cells.
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/example/Example3.PNG)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Set Up
 
-## Code scaffolding
+> **The only thing you need is to place the url and the component will do the rest for you.**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+<clicking-Grid [imageURL]="url">
+</clicking-Grid>
+```
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%201.PNG)
 
-## Build
+By making data binding to a variable that has the value of the url, the component places automatic values for each of the configurations.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+**You can change the number of rows and columns easily with the variables cellsInXAxis and cellsInYAxis.**
 
-## Running unit tests
+```
+<clicking-Grid
+	[imageURL]="url"
+	[cellsInXAxis]="10"
+	[cellsInYAxis]="15">
+</clicking-Grid>
+```
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%202.PNG)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+By default the values are 5, **but you can change them and they are independent,** so don't be afraid to play with them.
+  
+In the same way **you can change the canvas size**.
+But **keep in mind that this includes the size of the borders**, but don't worry, **you can also customize them.**
 
-## Running end-to-end tests
+```
+<clicking-Grid
+	[canvasSize]="500"
+	[borderSize]="25">
+</clicking-Grid>
+```
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%203.PNG)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+In addition you can also **change the rgba color with which the squares will be painted on the canvas.**
+```
+<clicking-Grid
+	[imageURL]="url"
+	[rgbaColor]="rgba">
+</clicking-Grid>
+```
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%204.PNG)
 
-## Further help
+With the **capitalLetter property you can decide between uppercase or lowercase** to display on the grid.
+```
+<clicking-Grid
+	[imageURL]="url"
+	[uppercase]="false">
+</clicking-Grid>
+```
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%205.PNG)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Finally **with the properties numbersInXAxis and numbersInYAxis you can choose whether to display numbers or letters in each of the axes.**
+```
+<clicking-Grid
+	[imageURL]="url"
+	[numbersInXAxis]="false"
+	[numbersInYAxis]="true">
+</clicking-Grid>
+```
+![enter image description here](https://raw.githubusercontent.com/JossJoestar/GridAngular/develop/src/assets/tutorial/Step%206%20y%207.PNG)
+## CONSUME DATA
+
+There are two easy ways to consume the grid data, one is by EventEmitter which is emitted every time the grid is updated by a click.
+
+    <clicking-Grid
+	    [imageURL]="url
+	    [borderSize]="15"
+	    [rgbaColor]="rgba"    
+	    (getDataCellList)="receiveMessage($event)"> </clicking-Grid>
+ With this method you need to create a function that receives the event
+
+    receiveMessage($event:  any) {
+        console.log($event);
+    }
+On the other hand, you can subscribe to the service and in the same way you will receive the data with each update per click.
+
+    constructor( private gridLibService:GridLibService) { }
+    
+    ngOnInit() {
+	    this.gridLibService.data.subscribe(m  =>  console.log(m));
+    }
+   Either way you will get an array of objects with the following structure.
+
+    export  interface  ICell {
+	    x:  number;
+	    y:  number;
+	    isActive:  boolean;
+	}
+
+## ADDITIONAL
+**None of the properties exclude other properties** (or they should be), so you can make as many combinations as you want.
+
+    <clicking-Grid
+    	[imageURL]="url"
+    	[cellsInXAxis]="10"
+    	[cellsInYAxis]="10"
+    	[canvasSize]="800"
+    	[borderSize]="15"
+    	[rgbaColor]="rgba"
+    	[uppercase]="true"
+    	[numbersInXAxis]="true"
+    	[numbersInYAxis]="false">
+    </clicking-Grid>
+|Variable| What does |
+|--|--|
+| imageURL |In it the url of the image to be displayed is placed  |
+|cellsInXAxis|Indicates the number of cells to open on the X axis|
+|cellsInYAxis|Indicates the number of cells to open on the Y axis|
+|canvasSize|Set the size of the canvas|
+|borderSize|Set the size of the border of the canvas, remember that the numbers and letters peeled off on it are 5px smaller|
+|rgbaColor|Set the color the cells are painted from when selecting, set an rgba value, example: rgba (0,0,0, .5)|
+|uppercase|Show uppercase or lowercase letters on the edges|
+|numbersInXAxis|Set numbers on the edges of the X axis|
+|numbersInYAxis|Set numbers on the edges of the Y axis|
+
+## Who Made This?
+Just another IT engineer
+
+Send Me A Email:  oreoslawiet@gmail.com
+
+Follow me here!!! 
+
+**Trans Rights Are Human Rights**
+

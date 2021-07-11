@@ -1,2 +1,10 @@
-<grid-VanHouten [imageURL]="url">
-</grid-VanHouten>
+<clicking-Grid 
+    [imageURL]="url"
+    [borderSize]="15"
+    [rgbaColor]="rgba"
+    [uppercase]="true"
+    [numbersInXAxis]="true"
+    [numbersInYAxis]="false"
+    (getDataCellList)="receiveMessage($event)"
+    >
+</clicking-Grid>

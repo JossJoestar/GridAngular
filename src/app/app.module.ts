@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { GridLibModule } from 'projects/grid-lib/src/lib/grid-lib.module';
+import { GridLibModule } from 'grid-lib';
+
 
 import { AppComponent } from './app.component';
 
